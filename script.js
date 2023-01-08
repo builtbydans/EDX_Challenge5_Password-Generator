@@ -88,6 +88,8 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+var allCharsArr = [lowerCasedCharacters, upperCasedCharacters, specialCharacters, numericCharacters];
+
 // Function to prompt user for password options
 function getPasswordOptions() {
   // Ensuring the password is always between 10 and 64 characters.
@@ -102,13 +104,15 @@ function getPasswordOptions() {
   var special = confirm("Would you like special characters in your password?");
   var numbers = confirm("Would you like numbers in your password?");
 
-  var userPasswordOpts = {
-    plength: passwordLength,
-    opt1: lowercase,
-    opt2: uppercase,
-    opt3: special,
-    opt4: numbers
-  };
+  // var userPasswordOpts = {
+  //   plength: passwordLength,
+  //   opt1: lowercase,
+  //   opt2: uppercase,
+  //   opt3: special,
+  //   opt4: numbers
+  // };
+
+  var userPasswordOpts = [passwordLength, lowercase, uppercase, special, numbers]
 
   return userPasswordOpts;
 }
@@ -118,47 +122,80 @@ function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// PSUEDO
-
-/*
-1. Condiitonal statement whcih overwrites the object to include the entire array of type.
-2. In generatePassword(), IF object.key === array, THEN do randomChar ELSE ignore.
-3. Work out IF Object.key === array, do something ELSE ignore.
-*/
-
-
+// Somehow map password options to random numbers. If that password option is false, don't include in the array.
 // Function to generate password with user input
 function generatePassword() {
-
   var userPasswordChoice = getPasswordOptions();
+  var passwordChoiceWithoutLen = userPasswordChoice.slice(1);
   var passwordArr = [];
 
-  if (userPasswordChoice.opt1 && userPasswordChoice.opt2 && userPasswordChoice.opt3 && userPasswordChoice.opt4) {
-    for (var i = 0; i < userPasswordChoice.plength; i++) {
+  if (passwordChoiceWithoutLen.includes(false)) {
 
-      var randomNum = Math.floor(Math.random() * 3) + 1;
+    // var removeFalseFromArr = passwordChoiceWithoutLen.filter(function(bool) {
+    //   return bool !== false;
+    // });
 
-      switch(randomNum) {
-        case 1:
-          passwordArr.push(getRandom(lowerCasedCharacters));
-        break;
-        case 2:
-          passwordArr.push(getRandom(upperCasedCharacters));
-        break;
-        case 3:
-          passwordArr.push(getRandom(specialCharacters));
-        break;
-        case 4:
-          passwordArr.push(getRandom(numericCharacters));
-        default:
-          null;
+
+
+  } else {
+      for (var i = 0; i < userPasswordChoice[0]; i++) {
+        passwordArr.push(getRandom(allCharsArr.flat()));
       }
     }
-    console.log(passwordArr);
-  }
-
+  // console.log(passwordArr);
   return passwordArr.join('');
 }
+
+
+
+
+// function generatePassword() {
+
+  // var passwordArr = [];
+
+//   if (Object.values(userPasswordChoice)) {
+
+//   let chatSetArr = [];
+//   const charSetTypes = Object.keys(userPasswordChoice).filter(charSetType => userPasswordChoice[charSetType]);
+//   for (var i = 0; i < userPasswordChoice.passwordLength; i++) {
+//     chatSetArr.push(...charSetTypes);
+//   }
+//   chatSetArr = chatSetArr.slice(chatSetArr.length-userPasswordChoice.passwordLength);
+//   shuffleArray(chatSetArr);
+
+//   return chatSetArr.map(charSet => getRandom(charSets[charSet])).join('');
+//   }
+//   return '';
+// }
+
+
+
+  // if (Object.values(userPasswordChoice)) {
+  //   for (var i = 0; i < userPasswordChoice.plength; i++) {
+
+  //     var randomNum = Math.floor(Math.random() * 3) + 1;
+
+  //     switch(randomNum) {
+  //       case 1:
+  //         passwordArr.push(getRandom(lowerCasedCharacters));
+  //       break;
+  //       case 2:
+  //         passwordArr.push(getRandom(upperCasedCharacters));
+  //       break;
+  //       case 3:
+  //         passwordArr.push(getRandom(specialCharacters));
+  //       break;
+  //       case 4:
+  //         passwordArr.push(getRandom(numericCharacters));
+  //       default:
+  //         null;
+  //     }
+  //   }
+  //   console.log(passwordArr);
+  // }
+  // console.log(Object.values(userPasswordChoice));
+  // return passwordArr.join('');
+// }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
