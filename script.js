@@ -123,18 +123,35 @@ function generatePassword() {
   for (var i = 0; i < userPasswordChoice[0]; i++) {
     switch(passwordChoiceWithoutLen.includes(false)) {
       case passwordChoiceWithoutLen[0] === true:
-        passwordArr.push(getRandom(allCharsArr[0]));
+        passwordArr.push(getRandom(allCharsArr[0]))
       case passwordChoiceWithoutLen[1] === true:
-        passwordArr.push(getRandom(allCharsArr[1]));
+        passwordArr.push(getRandom(allCharsArr[1]))
       case passwordChoiceWithoutLen[2] === true:
-        passwordArr.push(getRandom(allCharsArr[2]));
+        passwordArr.push(getRandom(allCharsArr[2]))
       case passwordChoiceWithoutLen[3] === true:
-        passwordArr.push(getRandom(allCharsArr[3]));
+        passwordArr.push(getRandom(allCharsArr[3]))
         break;
       default:
         passwordArr.push(getRandom(allCharsArr.flat()));
     }
   }
+
+
+  // if (passwordChoiceWithoutLen.includes(false)) {
+
+  //   if (passwordChoiceWithoutLen[0]) {
+  //   }
+
+  //   for (var i = 0; i < userPasswordChoice[0]; i++) {
+
+  //   }
+
+  // } else {
+  //     for (var i = 0; i < userPasswordChoice[0]; i++) {
+  //
+  //     }
+  //   }
+  // console.log(passwordArr);
   return passwordArr.join('');
 }
 
