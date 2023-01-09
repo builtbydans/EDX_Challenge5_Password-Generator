@@ -120,6 +120,8 @@ function generatePassword() {
   var passwordChoiceWithoutLen = userPasswordChoice.slice(1);
   var passwordArr = [];
 
+  // ALL YOU HAVE TO DO NOW IS WORK OUT HOW TO ONLY CHOOSE A RANDOM AMOUNT OF CHARACTERS FOR THE LENGTH REQUESTED.
+
   for (var i = 0; i < userPasswordChoice[0]; i++) {
     switch(passwordChoiceWithoutLen.includes(false)) {
       case passwordChoiceWithoutLen[0] === true:
@@ -135,23 +137,6 @@ function generatePassword() {
         passwordArr.push(getRandom(allCharsArr.flat()));
     }
   }
-
-
-  // if (passwordChoiceWithoutLen.includes(false)) {
-
-  //   if (passwordChoiceWithoutLen[0]) {
-  //   }
-
-  //   for (var i = 0; i < userPasswordChoice[0]; i++) {
-
-  //   }
-
-  // } else {
-  //     for (var i = 0; i < userPasswordChoice[0]; i++) {
-  //
-  //     }
-  //   }
-  // console.log(passwordArr);
   return passwordArr.join('');
 }
 
