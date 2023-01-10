@@ -88,8 +88,6 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-var allCharsArr = [lowerCasedCharacters, upperCasedCharacters, specialCharacters, numericCharacters];
-
 // Function to prompt user for password options
 function getPasswordOptions() {
   // Ensuring the password is always between 10 and 64 characters.
@@ -104,7 +102,8 @@ function getPasswordOptions() {
   var special = confirm("Would you like special characters in your password?");
   var numbers = confirm("Would you like numbers in your password?");
 
-  var userPasswordOpts = [passwordLength, lowercase, uppercase, special, numbers]
+  // User input stored in array for use later
+  var userPasswordOpts = [passwordLength, lowercase, uppercase, special, numbers];
 
   return userPasswordOpts;
 }
@@ -118,49 +117,30 @@ function getRandom(arr) {
 function generatePassword() {
   var userPasswordChoice = getPasswordOptions();
   var passwordArr = [];
+  var finalPassword = [];
 
-  console.log(randomNum);
-
+  /* This for loop checks for boolean values and adds any user requested options
+     to an array.
+   */
   for (var i = 0; i < userPasswordChoice[0]; i++) {
-    var randomNum = Math.floor(Math.random() * 4) + 1;
-
-    switch (randomNum) {
-      case 1:
-        passwordArr.push(getRandom(allCharsArr[0]));
-        break;
-      case 2:
-        passwordArr.push(getRandom(allCharsArr[1]));
-        break;
-      case 3:
-        passwordArr.push(getRandom(allCharsArr[2]));
-        break;
-      case 4:
-        passwordArr.push(getRandom(allCharsArr[3]));
-        break;
-      default:
-        null
+    if (userPasswordChoice[1]) {
+      passwordArr.push(getRandom(lowerCasedCharacters));
     }
+    if (userPasswordChoice[2]) {
+      passwordArr.push(getRandom(upperCasedCharacters));
+    }
+    if (userPasswordChoice[3]) {
+      passwordArr.push(getRandom(specialCharacters));
+    }
+    if (userPasswordChoice[4]) {
+      passwordArr.push(getRandom(numericCharacters));
+    }
+    /* This final execution returns the requested length of the password
+       as an array.
+    */
+    finalPassword.push(getRandom(passwordArr));
   }
-  console.log(passwordArr);
-
-
-  // for (var i = 0; i < userPasswordChoice[0]; i++) {
-  //   switch(passwordChoiceWithoutLen.includes(false)) {
-  //     case passwordChoiceWithoutLen[0] === true:
-  //       passwordArr.push(getRandom(allCharsArr[0]))
-  //     case passwordChoiceWithoutLen[1] === true:
-  //       passwordArr.push(getRandom(allCharsArr[1]))
-  //     case passwordChoiceWithoutLen[2] === true:
-  //       passwordArr.push(getRandom(allCharsArr[2]))
-  //     case passwordChoiceWithoutLen[3] === true:
-  //       passwordArr.push(getRandom(allCharsArr[3]))
-  //       break;
-  //     default:
-  //       passwordArr.push(getRandom(allCharsArr.flat()));
-  //   }
-  // }
-
-  return passwordArr.join('');
+  return finalPassword.join('');
 }
 
 // Get references to the #generate element
