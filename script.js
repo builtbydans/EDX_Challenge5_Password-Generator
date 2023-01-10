@@ -117,26 +117,49 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var userPasswordChoice = getPasswordOptions();
-  var passwordChoiceWithoutLen = userPasswordChoice.slice(1);
   var passwordArr = [];
 
-  // ALL YOU HAVE TO DO NOW IS WORK OUT HOW TO ONLY CHOOSE A RANDOM AMOUNT OF CHARACTERS FOR THE LENGTH REQUESTED.
+  console.log(randomNum);
 
   for (var i = 0; i < userPasswordChoice[0]; i++) {
-    switch(passwordChoiceWithoutLen.includes(false)) {
-      case passwordChoiceWithoutLen[0] === true:
-        passwordArr.push(getRandom(allCharsArr[0]))
-      case passwordChoiceWithoutLen[1] === true:
-        passwordArr.push(getRandom(allCharsArr[1]))
-      case passwordChoiceWithoutLen[2] === true:
-        passwordArr.push(getRandom(allCharsArr[2]))
-      case passwordChoiceWithoutLen[3] === true:
-        passwordArr.push(getRandom(allCharsArr[3]))
+    var randomNum = Math.floor(Math.random() * 4) + 1;
+
+    switch (randomNum) {
+      case 1:
+        passwordArr.push(getRandom(allCharsArr[0]));
+        break;
+      case 2:
+        passwordArr.push(getRandom(allCharsArr[1]));
+        break;
+      case 3:
+        passwordArr.push(getRandom(allCharsArr[2]));
+        break;
+      case 4:
+        passwordArr.push(getRandom(allCharsArr[3]));
         break;
       default:
-        passwordArr.push(getRandom(allCharsArr.flat()));
+        null
     }
   }
+  console.log(passwordArr);
+
+
+  // for (var i = 0; i < userPasswordChoice[0]; i++) {
+  //   switch(passwordChoiceWithoutLen.includes(false)) {
+  //     case passwordChoiceWithoutLen[0] === true:
+  //       passwordArr.push(getRandom(allCharsArr[0]))
+  //     case passwordChoiceWithoutLen[1] === true:
+  //       passwordArr.push(getRandom(allCharsArr[1]))
+  //     case passwordChoiceWithoutLen[2] === true:
+  //       passwordArr.push(getRandom(allCharsArr[2]))
+  //     case passwordChoiceWithoutLen[3] === true:
+  //       passwordArr.push(getRandom(allCharsArr[3]))
+  //       break;
+  //     default:
+  //       passwordArr.push(getRandom(allCharsArr.flat()));
+  //   }
+  // }
+
   return passwordArr.join('');
 }
 
